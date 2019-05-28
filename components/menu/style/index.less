@@ -8,7 +8,7 @@
   .reset-component;
 
   margin-bottom: 0;
-  padding-left: 0; // Override default ul/ol
+  padding-@{direction}: 0; // Override default ul/ol
   color: @menu-item-color;
   line-height: 0; // Fix display inline-block gap
   list-style: none;
@@ -62,9 +62,9 @@
     &::before {
       position: absolute;
       top: 0;
-      right: 0;
+      @{direction-inverse}: 0;
       bottom: 0;
-      left: 0;
+      @{direction}: 0;
       background-color: transparent;
       content: '';
     }
@@ -110,27 +110,27 @@
 
   &-inline,
   &-vertical,
-  &-vertical-left {
-    border-right: @border-width-base @border-style-base @border-color-split;
+  &-vertical-@{direction} {
+    border-@{direction-inverse}: @border-width-base @border-style-base @border-color-split;
   }
-  &-vertical-right {
-    border-left: @border-width-base @border-style-base @border-color-split;
+  &-vertical-@{direction-inverse} {
+    border-@{direction}: @border-width-base @border-style-base @border-color-split;
   }
 
   &-vertical&-sub,
-  &-vertical-left&-sub,
-  &-vertical-right&-sub {
+  &-vertical-@{direction}&-sub,
+  &-vertical-@{direction-inverse}&-sub {
     min-width: 160px;
     padding: 0;
-    border-right: 0;
+    border-@{direction-inverse}: 0;
     transform-origin: 0 0;
 
     .@{menu-prefix-cls}-item {
-      left: 0;
-      margin-left: 0;
-      border-right: 0;
+      @{direction}: 0;
+      margin-@{direction}: 0;
+      border-@{direction-inverse}: 0;
       &::after {
-        border-right: 0;
+        border-@{direction-inverse}: 0;
       }
     }
     > .@{menu-prefix-cls}-item,
@@ -155,7 +155,7 @@
       background 0.3s @ease-in-out, padding 0.15s @ease-in-out;
     .@{iconfont-css-prefix} {
       min-width: 14px;
-      margin-right: 10px;
+      margin-@{direction-inverse}: 10px;
       font-size: @font-size-base;
       transition: font-size 0.15s @ease-out, margin 0.3s @ease-in-out;
       + span {
@@ -182,15 +182,15 @@
       border-radius: @border-radius-base;
 
       .submenu-title-wrapper {
-        padding-right: 20px;
+        padding-@{direction-inverse}: 20px;
       }
 
       &::before {
         position: absolute;
         top: -7px;
-        right: 0;
+        @{direction-inverse}: 0;
         bottom: 0;
-        left: 0;
+        @{direction}: 0;
         opacity: 0.0001;
         content: ' ';
       }
@@ -205,13 +205,13 @@
     }
 
     &-vertical,
-    &-vertical-left,
-    &-vertical-right,
+    &-vertical-@{direction},
+    &-vertical-@{direction-inverse},
     &-inline {
       > .@{menu-prefix-cls}-submenu-title .@{menu-prefix-cls}-submenu-arrow {
         position: absolute;
         top: 50%;
-        right: 16px;
+        @{direction-inverse}: 16px;
         width: 10px;
         transition: transform 0.3s @ease-in-out;
         &::before,
@@ -224,7 +224,11 @@
           // ref: https://github.com/ant-design/ant-design/issues/15910
           background: @menu-bg;
           background: ~'@{menu-item-color} \9';
-          background-image: linear-gradient(to right, @menu-item-color, @menu-item-color);
+          background-image: linear-gradient(
+            to @direction-inverse,
+            @menu-item-color,
+            @menu-item-color
+          );
           background-image: ~'none \9';
           border-radius: 2px;
           transition: background 0.3s @ease-in-out, transform 0.3s @ease-in-out,
@@ -241,7 +245,11 @@
       > .@{menu-prefix-cls}-submenu-title:hover .@{menu-prefix-cls}-submenu-arrow {
         &::after,
         &::before {
-          background: linear-gradient(to right, @menu-highlight-color, @menu-highlight-color);
+          background: linear-gradient(
+            to @direction-inverse,
+            @menu-highlight-color,
+            @menu-highlight-color
+          );
         }
       }
     }
@@ -271,8 +279,8 @@
   }
 
   &-vertical &-submenu-selected,
-  &-vertical-left &-submenu-selected,
-  &-vertical-right &-submenu-selected {
+  &-vertical-@{direction} &-submenu-selected,
+  &-vertical-@{direction-inverse} &-submenu-selected {
     color: @menu-highlight-color;
     > a {
       color: @menu-highlight-color;
@@ -328,17 +336,17 @@
   }
 
   &-vertical,
-  &-vertical-left,
-  &-vertical-right,
+  &-vertical-@{direction},
+  &-vertical-@{direction-inverse},
   &-inline {
     .@{menu-prefix-cls}-item {
       position: relative;
       &::after {
         position: absolute;
         top: 0;
-        right: 0;
+        @{direction-inverse}: 0;
         bottom: 0;
-        border-right: @menu-item-active-border-width solid @menu-highlight-color;
+        border-@{direction-inverse}: @menu-item-active-border-width solid @menu-highlight-color;
         transform: scaleY(0.0001);
         opacity: 0;
         transition: transform 0.15s @ease-out, opacity 0.15s @ease-out;
@@ -391,7 +399,7 @@
     }
 
     .@{menu-prefix-cls}-submenu-title {
-      padding-right: 34px;
+      padding-@{direction-inverse}: 34px;
     }
   }
 
@@ -406,7 +414,7 @@
       > .@{menu-prefix-cls}-submenu
       > .@{menu-prefix-cls}-submenu-title,
     > .@{menu-prefix-cls}-submenu > .@{menu-prefix-cls}-submenu-title {
-      left: 0;
+      @{direction}: 0;
       padding: 0 (@menu-collapsed-width - 16px) / 2 !important;
       text-overflow: clip;
       .@{menu-prefix-cls}-submenu-arrow {
@@ -434,8 +442,8 @@
     }
 
     .@{menu-prefix-cls}-item-group-title {
-      padding-right: 4px;
-      padding-left: 4px;
+      padding-@{direction-inverse}: 4px;
+      padding-@{direction}: 4px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -452,8 +460,8 @@
   }
 
   &-root&-vertical,
-  &-root&-vertical-left,
-  &-root&-vertical-right,
+  &-root&-vertical-@{direction},
+  &-root&-vertical-@{direction-inverse},
   &-root&-inline {
     box-shadow: none;
   }
@@ -472,7 +480,7 @@
     }
 
     & .@{menu-prefix-cls}-item-group-title {
-      padding-left: 32px;
+      padding-@{direction}: 32px;
     }
   }
 

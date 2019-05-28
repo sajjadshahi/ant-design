@@ -20,7 +20,7 @@
 
   position: relative;
   display: inline-block;
-  margin-right: 8px;
+  margin-@{direction-inverse}: 8px;
   white-space: nowrap;
   cursor: pointer;
 }
@@ -49,7 +49,7 @@
   &-checked::after {
     position: absolute;
     top: 0;
-    left: 0;
+    @{direction}: 0;
     width: 100%;
     height: 100%;
     border: 1px solid @radio-dot-color;
@@ -71,13 +71,13 @@
 
       position: absolute;
       top: (@radio-size - @radio-dot-size) / 2 - 1px;
-      left: (@radio-size - @radio-dot-size) / 2 - 1px;
+      @{direction}: (@radio-size - @radio-dot-size) / 2 - 1px;
       display: table;
       width: @radio-dot-size;
       height: @radio-dot-size;
       background-color: @radio-dot-color;
       border-top: 0;
-      border-left: 0;
+      border-@{direction}: 0;
       border-radius: @radio-dot-size;
       transform: scale(0);
       opacity: 0;
@@ -87,7 +87,7 @@
 
     position: relative;
     top: 0;
-    left: 0;
+    @{direction}: 0;
     display: block;
     width: @radio-size;
     height: @radio-size;
@@ -102,9 +102,9 @@
   &-input {
     position: absolute;
     top: 0;
-    right: 0;
+    @{direction-inverse}: 0;
     bottom: 0;
-    left: 0;
+    @{direction}: 0;
     z-index: 1;
     cursor: pointer;
     opacity: 0;
@@ -144,8 +144,8 @@
 }
 
 span.@{radio-prefix-cls} + * {
-  padding-right: 8px;
-  padding-left: 8px;
+  padding-@{direction-inverse}: 8px;
+  padding-@{direction}: 8px;
 }
 
 .@{radio-prefix-cls}-button-wrapper {
@@ -161,7 +161,7 @@ span.@{radio-prefix-cls} + * {
   // strange align fix for chrome but works
   // https://gw.alipayobjects.com/zos/rmsportal/VFTfKXJuogBAXcvfAUWJ.gif
   border-top-width: @border-width-base + 0.02px;
-  border-left: 0;
+  border-@{direction}: 0;
   cursor: pointer;
   transition: color 0.3s, background 0.3s, border-color 0.3s;
 
@@ -173,7 +173,7 @@ span.@{radio-prefix-cls} + * {
     display: block;
     width: 0;
     height: 0;
-    margin-left: 0;
+    margin-@{direction}: 0;
   }
 
   .@{radio-group-prefix-cls}-large & {
@@ -192,7 +192,7 @@ span.@{radio-prefix-cls} + * {
     &::before {
       position: absolute;
       top: 0;
-      left: -1px;
+      @{direction}: -1px;
       display: block;
       width: 1px;
       height: 100%;
@@ -201,7 +201,7 @@ span.@{radio-prefix-cls} + * {
     }
   }
   &:first-child {
-    border-left: @border-width-base @border-style-base @border-color-base;
+    border-@{direction}: @border-width-base @border-style-base @border-color-base;
     border-radius: @border-radius-base 0 0 @border-radius-base;
   }
 
@@ -295,7 +295,7 @@ span.@{radio-prefix-cls} + * {
       border-color: @border-color-base;
     }
     &:first-child {
-      border-left-color: @border-color-base;
+      border-@{direction}-color: @border-color-base;
     }
   }
 

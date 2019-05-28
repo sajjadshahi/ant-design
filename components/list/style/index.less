@@ -14,15 +14,15 @@
 
   &-pagination {
     margin-top: 24px;
-    text-align: right;
+    text-align: @direction-inverse;
   }
 
   &-more {
     margin-top: 12px;
     text-align: center;
     button {
-      padding-right: 32px;
-      padding-left: 32px;
+      padding-@{direction-inverse}: 32px;
+      padding-@{direction}: 32px;
     }
   }
 
@@ -59,7 +59,7 @@
       align-items: flex-start;
       font-size: 0;
       &-avatar {
-        margin-right: @list-item-meta-avatar-margin-right;
+        margin-@{direction-inverse}: @list-item-meta-avatar-margin-right;
       }
       &-content {
         flex: 1 0;
@@ -85,7 +85,7 @@
     }
     &-action {
       flex: 0 0 auto;
-      margin-left: 48px;
+      margin-@{direction}: 48px;
       padding: 0;
       font-size: 0;
       list-style: none;
@@ -100,12 +100,12 @@
         cursor: pointer;
       }
       & > li:first-child {
-        padding-left: 0;
+        padding-@{direction}: 0;
       }
       &-split {
         position: absolute;
         top: 50%;
-        right: 0;
+        @{direction-inverse}: 0;
         width: 1px;
         height: 14px;
         margin-top: -7px;
@@ -173,7 +173,7 @@
     }
 
     &-extra {
-      margin-left: 40px;
+      margin-@{direction}: 40px;
     }
 
     &-meta {
@@ -189,12 +189,12 @@
 
     &-action {
       margin-top: @padding-md;
-      margin-left: auto;
+      margin-@{direction}: auto;
 
       > li {
         padding: 0 16px;
         &:first-child {
-          padding-left: 0;
+          padding-@{direction}: 0;
         }
       }
     }
@@ -218,7 +218,7 @@
   &:not(.@{list-prefix-cls}-vertical) {
     .@{list-prefix-cls}-item-no-flex {
       .@{list-prefix-cls}-item-action {
-        float: right;
+        float: @direction-inverse;
       }
     }
   }
