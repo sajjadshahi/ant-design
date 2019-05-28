@@ -7,7 +7,7 @@
 .selection__clear() {
   position: absolute;
   top: 50%;
-  right: @control-padding-horizontal - 1px;
+  @{direction-inverse}: @control-padding-horizontal - 1px;
   z-index: 1;
   display: inline-block;
   width: 12px;
@@ -57,7 +57,7 @@
 
     position: absolute;
     top: 50%;
-    right: @control-padding-horizontal - 1px;
+    @{direction-inverse}: @control-padding-horizontal - 1px;
     margin-top: -@font-size-sm / 2;
     color: @disabled-color;
     font-size: @font-size-sm;
@@ -101,9 +101,9 @@
     }
 
     &-selected-value {
-      float: left;
+      float: @direction;
       max-width: 100%;
-      padding-right: 20px;
+      padding-@{direction-inverse}: 20px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -111,7 +111,7 @@
   }
 
   &-no-arrow &-selection-selected-value {
-    padding-right: 0;
+    padding-@{direction-inverse}: 0;
   }
 
   &-disabled {
@@ -136,7 +136,7 @@
   }
 
   &-disabled &-selection--multiple &-selection__choice {
-    padding-right: 10px;
+    padding-@{direction-inverse}: 10px;
     color: fade(@black, 33%);
     background: @background-color-base;
     &__remove {
@@ -153,8 +153,8 @@
   &-selection__rendered {
     position: relative;
     display: block;
-    margin-right: @control-padding-horizontal - 1px;
-    margin-left: @control-padding-horizontal - 1px;
+    margin-@{direction-inverse}: @control-padding-horizontal - 1px;
+    margin-@{direction}: @control-padding-horizontal - 1px;
     line-height: @input-height-base - 2px;
     // https://github.com/ant-design/ant-design/issues/3481#issuecomment-254721026
     &::after {
@@ -212,7 +212,7 @@
     }
     .@{select-prefix-cls}-selection__clear,
     .@{select-prefix-cls}-arrow {
-      right: @control-padding-horizontal-sm;
+      @{direction-inverse}: @control-padding-horizontal-sm;
     }
   }
 
@@ -234,8 +234,8 @@
     // for TreeSelect compatibility
     position: absolute;
     top: 50%;
-    right: 9px;
-    left: 0;
+    @{direction-inverse}: 9px;
+    @{direction}: 0;
     max-width: 100%;
     height: 20px;
     margin-top: -10px;
@@ -243,18 +243,18 @@
     color: @input-placeholder-color;
     line-height: 20px;
     white-space: nowrap;
-    text-align: left;
+    text-align: @direction;
     text-overflow: ellipsis;
   }
 
   &-search__field__placeholder {
-    left: @control-padding-horizontal;
+    @{direction}: @control-padding-horizontal;
   }
 
   &-search__field__mirror {
     position: absolute;
     top: 0;
-    left: 0;
+    @{direction}: 0;
     white-space: pre;
     opacity: 0;
     pointer-events: none;
@@ -282,7 +282,7 @@
     }
 
     > i {
-      float: right;
+      float: @direction-inverse;
     }
   }
 
@@ -294,7 +294,7 @@
 
     .@{select-prefix-cls}-search--inline {
       position: static;
-      float: left;
+      float: @direction;
       width: auto;
       max-width: 100%;
       padding: 0;
@@ -307,11 +307,11 @@
     .@{select-prefix-cls}-selection__rendered {
       height: auto;
       margin-bottom: -3px;
-      margin-left: 5px;
+      margin-@{direction}: 5px;
     }
 
     .@{select-prefix-cls}-selection__placeholder {
-      margin-left: 6px;
+      margin-@{direction}: 6px;
     }
 
     > ul > li,
@@ -324,9 +324,9 @@
 
     .@{select-prefix-cls}-selection__choice {
       position: relative;
-      float: left;
+      float: @direction;
       max-width: 99%;
-      margin-right: 4px;
+      margin-@{direction-inverse}: 4px;
       padding: 0 20px 0 10px;
       overflow: hidden;
       color: @tag-default-color;
@@ -353,7 +353,7 @@
       .iconfont-mixin();
 
       position: absolute;
-      right: 4px;
+      @{direction-inverse}: 4px;
       display: inline-block;
       color: @text-color-secondary;
       font-weight: bold;
@@ -374,12 +374,12 @@
   }
 
   &-allow-clear &-selection--single &-selection-selected-value {
-    padding-right: 16px;
+    padding-@{direction-inverse}: 16px;
   }
 
   &-allow-clear &-selection--multiple &-selection__rendered,
   &-show-arrow &-selection--multiple &-selection__rendered {
-    margin-right: 20px; // In case that clear button will overlap content
+    margin-@{direction-inverse}: 20px; // In case that clear button will overlap content
   }
 
   &-open {
@@ -417,7 +417,7 @@
   }
   &-combobox&-allow-clear &-selection:hover &-selection__rendered,
   &-combobox&-show-arrow &-selection:hover &-selection__rendered {
-    margin-right: 20px; // In case that clear button will overlap content
+    margin-@{direction-inverse}: 20px; // In case that clear button will overlap content
   }
 }
 
@@ -426,7 +426,7 @@
 
   position: absolute;
   top: -9999px;
-  left: -9999px;
+  @{direction}: -9999px;
   z-index: @zindex-dropdown;
   box-sizing: border-box;
   font-size: @font-size-base;
@@ -439,21 +439,21 @@
   outline: none;
   box-shadow: @box-shadow-base;
 
-  &.slide-up-enter.slide-up-enter-active&-placement-bottomLeft,
-  &.slide-up-appear.slide-up-appear-active&-placement-bottomLeft {
+  &.slide-up-enter.slide-up-enter-active&-placement-bottom@{direction},
+  &.slide-up-appear.slide-up-appear-active&-placement-bottom@{direction} {
     animation-name: antSlideUpIn;
   }
 
-  &.slide-up-enter.slide-up-enter-active&-placement-topLeft,
-  &.slide-up-appear.slide-up-appear-active&-placement-topLeft {
+  &.slide-up-enter.slide-up-enter-active&-placement-top@{direction},
+  &.slide-up-appear.slide-up-appear-active&-placement-top@{direction} {
     animation-name: antSlideDownIn;
   }
 
-  &.slide-up-leave.slide-up-leave-active&-placement-bottomLeft {
+  &.slide-up-leave.slide-up-leave-active&-placement-bottom@{direction} {
     animation-name: antSlideUpOut;
   }
 
-  &.slide-up-leave.slide-up-leave-active&-placement-topLeft {
+  &.slide-up-leave.slide-up-leave-active&-placement-top@{direction} {
     animation-name: antSlideDownOut;
   }
 
@@ -464,7 +464,7 @@
   &-menu {
     max-height: 250px;
     margin-bottom: 0;
-    padding-left: 0; // Override default ul/ol
+    padding-@{direction}: 0; // Override default ul/ol
     overflow: auto;
     list-style: none;
     outline: none;
@@ -474,7 +474,7 @@
       padding: 0;
 
       > .@{select-prefix-cls}-dropdown-menu-item {
-        padding-left: 20px;
+        padding-@{direction}: 20px;
       }
     }
 
@@ -548,11 +548,11 @@
 
   &&--multiple {
     .@{select-prefix-cls}-dropdown-menu-item {
-      padding-right: @control-padding-horizontal + 20;
+      padding-@{direction-inverse}: @control-padding-horizontal + 20;
       & .@{select-prefix-cls}-selected-icon {
         position: absolute;
         top: 50%;
-        right: @control-padding-horizontal;
+        @{direction-inverse}: @control-padding-horizontal;
         color: transparent;
         font-weight: bold;
         font-size: 12px;
@@ -580,7 +580,7 @@
   // Patch for popup adjust
   // https://github.com/ant-design/ant-design/issues/14422
   &--empty&--multiple &-menu-item {
-    padding-right: @control-padding-horizontal;
+    padding-@{direction-inverse}: @control-padding-horizontal;
   }
 
   &-container-open,

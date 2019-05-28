@@ -31,8 +31,8 @@
     .btn-primary;
 
     .@{btn-prefix-cls}-group &:not(:first-child):not(:last-child) {
-      border-right-color: @btn-group-border;
-      border-left-color: @btn-group-border;
+      border-@{direction-inverse}-color: @btn-group-border;
+      border-@{direction}-color: @btn-group-border;
 
       &:disabled {
         border-color: @btn-default-border;
@@ -41,18 +41,18 @@
 
     .@{btn-prefix-cls}-group &:first-child {
       &:not(:last-child) {
-        border-right-color: @btn-group-border;
+        border-@{direction-inverse}-color: @btn-group-border;
         &[disabled] {
-          border-right-color: @btn-default-border;
+          border-@{direction-inverse}-color: @btn-default-border;
         }
       }
     }
 
     .@{btn-prefix-cls}-group &:last-child:not(:first-child),
     .@{btn-prefix-cls}-group & + & {
-      border-left-color: @btn-group-border;
+      border-@{direction}-color: @btn-group-border;
       &[disabled] {
-        border-left-color: @btn-default-border;
+        border-@{direction}-color: @btn-default-border;
       }
     }
   }
@@ -85,9 +85,9 @@
   &::before {
     position: absolute;
     top: -1px;
-    right: -1px;
+    @{direction-inverse}: -1px;
     bottom: -1px;
-    left: -1px;
+    @{direction}: -1px;
     z-index: 1;
     display: none;
     background: @component-background;
@@ -99,7 +99,7 @@
   }
 
   .@{iconfont-css-prefix} {
-    transition: margin-left 0.3s @ease-in-out;
+    transition: margin- @direction 0.3s @ease-in-out;
 
     // Follow icon blur under windows. Change the render.
     // https://github.com/ant-design/ant-design/issues/13924
@@ -121,16 +121,16 @@
   }
 
   &&-loading:not(&-circle):not(&-circle-outline):not(&-icon-only) {
-    padding-left: 29px;
+    padding-@{direction}: 29px;
     .@{iconfont-css-prefix}:not(:last-child) {
-      margin-left: -14px;
+      margin-@{direction}: -14px;
     }
   }
 
   &-sm&-loading:not(&-circle):not(&-circle-outline):not(&-icon-only) {
-    padding-left: 24px;
+    padding-@{direction}: 24px;
     .@{iconfont-css-prefix} {
-      margin-left: -17px;
+      margin-@{direction}: -17px;
     }
   }
 
@@ -139,8 +139,8 @@
   }
 
   &:not(&-circle):not(&-circle-outline)&-icon-only {
-    padding-right: 8px;
-    padding-left: 8px;
+    padding-@{direction-inverse}: 8px;
+    padding-@{direction}: 8px;
   }
 
   // http://stackoverflow.com/a/21281554/3040605
@@ -152,7 +152,7 @@
   // To ensure that a space will be placed between character and `Icon`.
   > .@{iconfont-css-prefix} + span,
   > span + .@{iconfont-css-prefix} {
-    margin-left: 8px;
+    margin-@{direction}: 8px;
   }
 
   &-background-ghost {
@@ -180,7 +180,7 @@
   }
 
   &-two-chinese-chars > *:not(.@{iconfont-css-prefix}) {
-    margin-right: -0.34em;
+    margin-@{direction-inverse}: -0.34em;
     letter-spacing: 0.34em;
   }
 

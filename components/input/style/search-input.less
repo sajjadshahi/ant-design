@@ -17,7 +17,7 @@
 
   &-enter-button {
     input {
-      border-right: 0;
+      border-@{direction-inverse}: 0;
     }
 
     & + .@{ant-prefix}-input-group-addon,
@@ -27,8 +27,8 @@
 
       .@{search-prefix}-button {
         width: 100%;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
+        border-top-@{direction}-radius: 0;
+        border-bottom-@{direction}-radius: 0;
       }
     }
   }

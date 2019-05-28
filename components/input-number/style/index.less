@@ -40,7 +40,7 @@
     .iconfont-mixin();
 
     position: absolute;
-    right: 4px;
+    @{direction-inverse}: 4px;
     width: 12px;
     height: 12px;
     color: @text-color-secondary;
@@ -71,7 +71,7 @@
     width: 100%;
     height: @input-height-base - 2px;
     padding: 0 @control-padding-horizontal - 1px;
-    text-align: left;
+    text-align: @direction;
     background-color: transparent;
     border: 0;
     border-radius: @border-radius-base;
@@ -102,11 +102,11 @@
   &-handler-wrap {
     position: absolute;
     top: 0;
-    right: 0;
+    @{direction-inverse}: 0;
     width: 22px;
     height: 100%;
     background: @component-background;
-    border-left: @border-width-base @border-style-base @border-color-base;
+    border-@{direction}: @border-width-base @border-style-base @border-color-base;
     border-radius: 0 @border-radius-base @border-radius-base 0;
     opacity: 0;
     transition: opacity 0.24s linear 0.1s;
@@ -120,7 +120,7 @@
         .iconfont-size-under-12px(7px);
 
         min-width: auto;
-        margin-right: 0;
+        margin-@{direction-inverse}: 0;
       }
     }
   }
