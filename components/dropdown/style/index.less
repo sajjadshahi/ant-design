@@ -8,16 +8,16 @@
 
   position: absolute;
   top: -9999px;
-  left: -9999px;
+  @{direction-inverse}: -9999px;
   z-index: @zindex-dropdown;
   display: block;
 
   &::before {
     position: absolute;
     top: -7px;
-    right: 0;
+    @{direction}: 0;
     bottom: -7px;
-    left: -7px;
+    @{direction-inverse}: -7px;
     z-index: -9999;
     opacity: 0.0001;
     content: ' ';
@@ -50,7 +50,7 @@
     position: relative;
     margin: 0;
     padding: 4px 0;
-    text-align: left;
+    text-align: @direction-inverse;
     list-style-type: none;
     background-color: @component-background;
     background-clip: padding-box;
@@ -89,7 +89,7 @@
 
       > .anticon:first-child {
         min-width: 12px;
-        margin-right: 8px;
+        margin-@{direction}: 8px;
       }
 
       > a {
@@ -130,7 +130,7 @@
       }
       .@{dropdown-prefix-cls}-menu-submenu-arrow {
         position: absolute;
-        right: @padding-xs;
+        @{direction}: @padding-xs;
         &-icon {
           color: @text-color-secondary;
           font-style: normal;
@@ -140,7 +140,7 @@
     }
 
     &-submenu-title {
-      padding-right: 26px;
+      padding-@{direction}: 26px;
     }
 
     &-submenu-vertical {
@@ -150,9 +150,9 @@
     &-submenu-vertical > & {
       position: absolute;
       top: 0;
-      left: 100%;
+      @{direction-inverse}: 100%;
       min-width: 100%;
-      margin-left: 4px;
+      margin-@{direction-inverse}: 4px;
       transform-origin: 0 0;
     }
 
@@ -166,33 +166,33 @@
     }
   }
 
-  &.slide-down-enter.slide-down-enter-active&-placement-bottomLeft,
-  &.slide-down-appear.slide-down-appear-active&-placement-bottomLeft,
+  &.slide-down-enter.slide-down-enter-active&-placement-bottom@{direction-inverse},
+  &.slide-down-appear.slide-down-appear-active&-placement-bottom@{direction-inverse},
   &.slide-down-enter.slide-down-enter-active&-placement-bottomCenter,
   &.slide-down-appear.slide-down-appear-active&-placement-bottomCenter,
-  &.slide-down-enter.slide-down-enter-active&-placement-bottomRight,
-  &.slide-down-appear.slide-down-appear-active&-placement-bottomRight {
+  &.slide-down-enter.slide-down-enter-active&-placement-bottom@{direction},
+  &.slide-down-appear.slide-down-appear-active&-placement-bottom@{direction} {
     animation-name: antSlideUpIn;
   }
 
-  &.slide-up-enter.slide-up-enter-active&-placement-topLeft,
-  &.slide-up-appear.slide-up-appear-active&-placement-topLeft,
+  &.slide-up-enter.slide-up-enter-active&-placement-top@{direction-inverse},
+  &.slide-up-appear.slide-up-appear-active&-placement-top@{direction-inverse},
   &.slide-up-enter.slide-up-enter-active&-placement-topCenter,
   &.slide-up-appear.slide-up-appear-active&-placement-topCenter,
-  &.slide-up-enter.slide-up-enter-active&-placement-topRight,
-  &.slide-up-appear.slide-up-appear-active&-placement-topRight {
+  &.slide-up-enter.slide-up-enter-active&-placement-top@{direction},
+  &.slide-up-appear.slide-up-appear-active&-placement-top@{direction} {
     animation-name: antSlideDownIn;
   }
 
-  &.slide-down-leave.slide-down-leave-active&-placement-bottomLeft,
+  &.slide-down-leave.slide-down-leave-active&-placement-bottom@{direction-inverse},
   &.slide-down-leave.slide-down-leave-active&-placement-bottomCenter,
-  &.slide-down-leave.slide-down-leave-active&-placement-bottomRight {
+  &.slide-down-leave.slide-down-leave-active&-placement-bottom@{direction} {
     animation-name: antSlideUpOut;
   }
 
-  &.slide-up-leave.slide-up-leave-active&-placement-topLeft,
+  &.slide-up-leave.slide-up-leave-active&-placement-top@{direction-inverse},
   &.slide-up-leave.slide-up-leave-active&-placement-topCenter,
-  &.slide-up-leave.slide-up-leave-active&-placement-topRight {
+  &.slide-up-leave.slide-up-leave-active&-placement-top@{direction} {
     animation-name: antSlideDownOut;
   }
 }
@@ -208,8 +208,8 @@
   white-space: nowrap;
 
   &.@{ant-prefix}-btn-group > .@{ant-prefix}-btn:last-child:not(:first-child) {
-    padding-right: @padding-xs;
-    padding-left: @padding-xs;
+    padding-@{direction}: @padding-xs;
+    padding-@{direction-inverse}: @padding-xs;
   }
   .@{iconfont-css-prefix}.@{iconfont-css-prefix}-down {
     .iconfont-size-under-12px(10px);

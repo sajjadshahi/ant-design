@@ -68,9 +68,9 @@
   }
 
   &-extra {
-    float: right;
+    float: @direction;
     // https://stackoverflow.com/a/22429853/3040605
-    margin-left: auto;
+    margin-@{direction-inverse}: auto;
     padding: @card-head-padding 0;
     color: @text-color;
     font-weight: normal;
@@ -88,7 +88,7 @@
   }
 
   &-grid {
-    float: left;
+    float: @direction-inverse;
     width: 33.33%;
     padding: @card-padding-base;
     border: 0;
@@ -132,7 +132,7 @@
     .clearfix;
 
     & > li {
-      float: left;
+      float: @direction-inverse;
       margin: 12px 0;
       color: @text-color-secondary;
       text-align: center;
@@ -168,7 +168,7 @@
       }
 
       &:not(:last-child) {
-        border-right: @border-width-base @border-style-base @border-color-split;
+        border-@{direction}: @border-width-base @border-style-base @border-color-split;
       }
     }
   }
@@ -196,8 +196,8 @@
     .clearfix;
 
     &-avatar {
-      float: left;
-      padding-right: 16px;
+      float: @direction-inverse;
+      padding-@{direction}: 16px;
     }
 
     &-detail {
