@@ -5,8 +5,8 @@
 .make-row(@gutter: @grid-gutter-width) {
   position: relative;
   height: auto;
-  margin-right: (@gutter / -2);
-  margin-left: (@gutter / -2);
+  margin-@{direction-inverse}: (@gutter / -2);
+  margin-@{direction}: (@gutter / -2);
   .clearfix;
 }
 
@@ -24,8 +24,8 @@
       position: relative;
       // Prevent columns from collapsing when empty
       min-height: 1px;
-      padding-right: (@grid-gutter-width / 2);
-      padding-left: (@grid-gutter-width / 2);
+      padding-@{direction-inverse}: (@grid-gutter-width / 2);
+      padding-@{direction}: (@grid-gutter-width / 2);
     }
   }
   .col(1);
@@ -46,7 +46,7 @@
     // terminal
     @{list} {
       flex: 0 0 auto;
-      float: left;
+      float: @direction;
     }
   }
   .col(1); // kickstart it
@@ -59,13 +59,13 @@
     width: percentage((@index / @grid-columns));
   }
   .@{ant-prefix}-col@{class}-push-@{index} {
-    left: percentage((@index / @grid-columns));
+    @{direction}: percentage((@index / @grid-columns));
   }
   .@{ant-prefix}-col@{class}-pull-@{index} {
-    right: percentage((@index / @grid-columns));
+    @{direction-inverse}: percentage((@index / @grid-columns));
   }
   .@{ant-prefix}-col@{class}-offset-@{index} {
-    margin-left: percentage((@index / @grid-columns));
+    margin-@{direction}: percentage((@index / @grid-columns));
   }
   .@{ant-prefix}-col@{class}-order-@{index} {
     order: @index;
@@ -78,19 +78,19 @@
     display: none;
   }
   .@{ant-prefix}-col-push-@{index} {
-    left: auto;
+    @{direction}: auto;
   }
   .@{ant-prefix}-col-pull-@{index} {
-    right: auto;
+    @{direction-inverse}: auto;
   }
   .@{ant-prefix}-col@{class}-push-@{index} {
-    left: auto;
+    @{direction}: auto;
   }
   .@{ant-prefix}-col@{class}-pull-@{index} {
-    right: auto;
+    @{direction-inverse}: auto;
   }
   .@{ant-prefix}-col@{class}-offset-@{index} {
-    margin-left: 0;
+    margin-@{direction}: 0;
   }
   .@{ant-prefix}-col@{class}-order-@{index} {
     order: 0;
